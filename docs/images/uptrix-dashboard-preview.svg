@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="920" viewBox="0 0 1440 920" role="img" aria-labelledby="title desc">
+  <title id="title">UPTRIX Website Monitor dashboard preview</title>
+  <desc id="desc">Illustrative overview dashboard with three sample websites, two operational sites, one site needing attention, and fleet health details.</desc>
+  <defs>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#eef4ff"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="3" stdDeviation="7" flood-color="#183153" flood-opacity=".06"/></filter>
+  </defs>
+  <rect width="1440" height="920" fill="#f6f8fc"/>
+  <rect width="245" height="920" fill="#ffffff"/>
+  <path d="M245 0v920" stroke="#dbe3ef"/>
+
+  <!-- Sidebar -->
+  <rect x="20" y="24" width="42" height="42" rx="12" fill="#2563eb"/>
+  <text x="41" y="52" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="800" fill="#fff">U</text>
+  <text x="74" y="52" font-family="Arial,sans-serif" font-size="18" font-weight="800" fill="#0f172a">UPTRIX</text>
+  <text x="25" y="118" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#0f172a">▣  Website Monitor</text>
+  <rect x="0" y="137" width="244" height="42" fill="#eff5ff"/>
+  <rect x="0" y="137" width="4" height="42" fill="#3478f6"/>
+  <text x="52" y="163" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#1d4ed8">◉  Overview</text>
+  <text x="52" y="205" font-family="Arial,sans-serif" font-size="13" fill="#475569">▤  Infrastructure Status</text>
+  <text x="52" y="247" font-family="Arial,sans-serif" font-size="13" fill="#475569">⌁  Performance Analytics</text>
+  <text x="52" y="289" font-family="Arial,sans-serif" font-size="13" fill="#475569">▧  View Full Report</text>
+  <text x="52" y="331" font-family="Arial,sans-serif" font-size="13" fill="#475569">⚒  Central Diagnostics</text>
+  <text x="25" y="382" font-family="Arial,sans-serif" font-size="14" font-weight="800" fill="#0f172a">◆  Workspace</text>
+  <text x="52" y="420" font-family="Arial,sans-serif" font-size="13" fill="#475569">◉  Workspace Apps</text>
+  <text x="52" y="458" font-family="Arial,sans-serif" font-size="13" fill="#475569">▣  PROD</text>
+  <text x="52" y="496" font-family="Arial,sans-serif" font-size="13" fill="#475569">▣  Staging/Local</text>
+  <rect x="22" y="550" width="200" height="1" fill="#edf1f7"/>
+  <circle cx="37" cy="583" r="5" fill="#10b981"/>
+  <text x="51" y="587" font-family="Arial,sans-serif" font-size="11" fill="#64748b">Monitor service connected</text>
+
+  <!-- Header -->
+  <text x="276" y="39" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#64748b">HOME</text>
+  <text x="322" y="39" font-family="Arial,sans-serif" font-size="12" fill="#94a3b8">›</text>
+  <text x="340" y="39" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#3478f6">OVERVIEW</text>
+  <text x="276" y="82" font-family="Arial,sans-serif" font-size="25" font-weight="800" fill="#0f172a">UPTRIX Website Monitor</text>
+  <text x="276" y="111" font-family="Arial,sans-serif" font-size="12" fill="#64748b">PUBLIC DEMO · READ ONLY</text>
+  <rect x="438" y="91" width="86" height="32" rx="8" fill="#fff" stroke="#d8e2f0"/>
+  <text x="481" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#0f172a">Sign in</text>
+
+  <!-- Hero -->
+  <rect x="276" y="132" width="1078" height="146" rx="14" fill="url(#hero)" stroke="#dbe5f1"/>
+  <text x="302" y="165" font-family="Arial,sans-serif" font-size="11" font-weight="800" letter-spacing="1" fill="#2563eb">◉  FLEET OVERVIEW</text>
+  <text x="302" y="204" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="#0f172a">Website health at a glance</text>
+  <text x="302" y="231" font-family="Arial,sans-serif" font-size="13" fill="#64748b">A quick summary of monitored websites and the services that need attention.</text>
+  <text x="302" y="258" font-family="Arial,sans-serif" font-size="11" fill="#64748b">Last check: Sample data</text>
+  <rect x="1135" y="183" width="190" height="40" rx="8" fill="#111a2f"/>
+  <text x="1230" y="208" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#fff">View infrastructure details  →</text>
+
+  <!-- Summary cards -->
+  <g filter="url(#shadow)">
+    <rect x="276" y="298" width="258" height="105" rx="12" fill="#fff" stroke="#dbe5f1"/>
+    <rect x="548" y="298" width="258" height="105" rx="12" fill="#fff" stroke="#dbe5f1"/>
+    <rect x="820" y="298" width="258" height="105" rx="12" fill="#fff" stroke="#dbe5f1"/>
+    <rect x="1092" y="298" width="262" height="105" rx="12" fill="#fff" stroke="#dbe5f1"/>
+  </g>
+  <rect x="294" y="317" width="40" height="40" rx="10" fill="#eaf1ff"/><text x="314" y="343" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#2563eb">◎</text>
+  <text x="347" y="330" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#64748b">MONITORED WEBSITES</text><text x="347" y="370" font-family="Arial,sans-serif" font-size="25" font-weight="800" fill="#0f172a">3</text>
+  <rect x="566" y="317" width="40" height="40" rx="10" fill="#dcfce7"/><text x="586" y="343" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#059669">✓</text>
+  <text x="619" y="330" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#64748b">OPERATIONAL</text><text x="619" y="370" font-family="Arial,sans-serif" font-size="25" font-weight="800" fill="#059669">2</text>
+  <rect x="838" y="317" width="40" height="40" rx="10" fill="#fee2e2"/><text x="858" y="343" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#dc2626">!</text>
+  <text x="891" y="330" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#64748b">NEED ATTENTION</text><text x="891" y="370" font-family="Arial,sans-serif" font-size="25" font-weight="800" fill="#dc2626">1</text>
+  <rect x="1110" y="317" width="40" height="40" rx="10" fill="#ede9fe"/><text x="1130" y="343" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#7c3aed">◷</text>
+  <text x="1163" y="330" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#64748b">AVERAGE RESPONSE</text><text x="1163" y="370" font-family="Arial,sans-serif" font-size="25" font-weight="800" fill="#2563eb">113ms</text>
+
+  <!-- Priority panel -->
+  <rect x="276" y="425" width="624" height="328" rx="12" fill="#fff" stroke="#dbe5f1"/>
+  <text x="300" y="457" font-family="Arial,sans-serif" font-size="10" font-weight="800" letter-spacing="1" fill="#64748b">PRIORITY</text>
+  <text x="300" y="481" font-family="Arial,sans-serif" font-size="17" font-weight="800" fill="#0f172a">Needs attention</text>
+  <rect x="847" y="447" width="30" height="25" rx="13" fill="#f1f5f9"/><text x="862" y="464" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="800" fill="#334155">1</text>
+  <path d="M300 499h576" stroke="#edf1f7"/>
+  <rect x="302" y="520" width="34" height="34" rx="9" fill="#fee2e2"/><text x="319" y="543" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" fill="#dc2626">!</text>
+  <text x="350" y="535" font-family="Arial,sans-serif" font-size="13" font-weight="800" fill="#0f172a">api.example.net</text>
+  <text x="350" y="555" font-family="Arial,sans-serif" font-size="11" fill="#64748b">This is a simulated outage for demonstration.</text>
+  <rect x="809" y="525" width="63" height="23" rx="12" fill="#fee2e2"/><text x="840" y="541" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" font-weight="800" fill="#b91c1c">DOWN</text>
+  <rect x="300" y="588" width="576" height="134" rx="10" fill="#f8fafc"/>
+  <text x="320" y="618" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#475569">Demo websites</text>
+  <circle cx="326" cy="650" r="5" fill="#10b981"/><text x="340" y="654" font-family="Arial,sans-serif" font-size="12" fill="#334155">status.example.com</text><text x="847" y="654" text-anchor="end" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#059669">UP · 84ms</text>
+  <circle cx="326" cy="681" r="5" fill="#10b981"/><text x="340" y="685" font-family="Arial,sans-serif" font-size="12" fill="#334155">shop.example.org</text><text x="847" y="685" text-anchor="end" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#059669">UP · 142ms</text>
+
+  <!-- Fleet posture panel -->
+  <rect x="918" y="425" width="436" height="328" rx="12" fill="#fff" stroke="#dbe5f1"/>
+  <text x="944" y="457" font-family="Arial,sans-serif" font-size="10" font-weight="800" letter-spacing="1" fill="#64748b">FLEET POSTURE</text>
+  <text x="944" y="481" font-family="Arial,sans-serif" font-size="17" font-weight="800" fill="#0f172a">Service health</text>
+  <text x="1326" y="481" text-anchor="end" font-family="Arial,sans-serif" font-size="22" font-weight="800" fill="#2563eb">67%</text>
+  <rect x="944" y="516" width="384" height="12" rx="6" fill="#fee2e2"/><rect x="944" y="516" width="256" height="12" rx="6" fill="#10b981"/>
+  <circle cx="950" cy="558" r="4" fill="#10b981"/><text x="962" y="562" font-family="Arial,sans-serif" font-size="11" fill="#64748b"><tspan font-weight="800" fill="#334155">2</tspan> operational</text>
+  <circle cx="1156" cy="558" r="4" fill="#ef4444"/><text x="1168" y="562" font-family="Arial,sans-serif" font-size="11" fill="#64748b"><tspan font-weight="800" fill="#334155">1</tspan> needs attention</text>
+  <text x="944" y="612" font-family="Arial,sans-serif" font-size="12" fill="#475569">2 of 3 sample websites are responding;</text>
+  <text x="944" y="632" font-family="Arial,sans-serif" font-size="12" fill="#475569">1 needs attention.</text>
+  <path d="M944 668h384" stroke="#edf1f7"/>
+  <text x="944" y="701" font-family="Arial,sans-serif" font-size="12" font-weight="800" fill="#2563eb">Explore performance trends  →</text>
+
+  <text x="276" y="795" font-family="Arial,sans-serif" font-size="11" fill="#94a3b8">UPTRIX Website Monitor · Illustrative preview with sample data</text>
+  <rect x="276" y="818" width="1078" height="1" fill="#e5ebf3"/>
+  <text x="276" y="846" font-family="Arial,sans-serif" font-size="11" fill="#94a3b8">Monitor availability, response time, and service health from one dashboard.</text>
+</svg>

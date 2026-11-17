@@ -4,6 +4,9 @@
 !/README.md
 !/requirements.txt
 !/backend/
+!/docs/
+!/docs/images/
+!/docs/images/uptrix-dashboard-preview.svg
 
 # Core monitor service files
 /backend/*

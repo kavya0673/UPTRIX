@@ -2,6 +2,8 @@
 
 UPTRIX monitors website availability, response time, TLS certificate expiry, and recent check history. The web dashboard provides a fleet overview, detailed infrastructure status, analytics, reports, and per-website workspace cards.
 
+![UPTRIX website monitor dashboard preview using sample demo data](docs/images/uptrix-dashboard-preview.svg)
+
 ## Run locally (Windows PowerShell)
 
 1. Install Python 3.10 or newer.
