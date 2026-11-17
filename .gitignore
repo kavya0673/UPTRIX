@@ -1,0 +1,48 @@
+# Publish only the UPTRIX website-monitor application from this mixed workspace.
+/*
+!/.gitignore
+!/README.md
+!/requirements.txt
+!/backend/
+
+# Core monitor service files
+/backend/*
+!/backend/database.py
+!/backend/init_rbac.py
+!/backend/models.py
+!/backend/multi_status_service.py
+!/backend/reset_user_password.py
+!/backend/multi_static/
+!/backend/multi_static/**
+
+# Local settings, credentials, generated state, and databases
+.env
+.env.*
+!.env.example
+**/*.db
+**/*.sqlite
+**/*.sqlite3
+**/domains.json
+**/history.json
+**/trace_collection.json
+**/audit_logs.json
+**/agent_servers.json
+**/hosts.json
+**/*secret*
+**/*credential*
+**/*token*
+**/__pycache__/
+**/*.py[cod]
+
+# Local/build artifacts
+**/node_modules/
+**/.venv/
+**/venv/
+**/dist/
+**/build/
+**/*.log
+**/*error*.txt
+**/*output*.txt
+**/*dump*.txt
+**/*.tar
+**/*.tar.gz

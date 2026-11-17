@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Monitor | Analytical Persistence Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-body: #f1f5f9;
+            --brand-blue: #3b82f6;
+            --brand-green: #10b981;
+            --brand-red: #ef4444;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --card-bg: #ffffff;
+            --border: rgba(59, 130, 246, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .report-page {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Section */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+        }
+
+        .branding {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .branding img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .branding h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #1e293b;
+            letter-spacing: -0.5px;
+        }
+
+        .summary-sub {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .btn-outline {
+            background: white;
+            border: 1.5px solid var(--border);
+            color: var(--text-main);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-outline:hover {
+            transform: translateY(-2px);
+            border-color: var(--brand-blue);
+        }
+
+        .btn-primary {
+            background: var(--brand-blue);
+            color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: #2563eb;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1.5px solid var(--border);
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.02);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .stat-card.accent-green .stat-value {
+            color: var(--brand-green);
+        }
+
+        .stat-card.accent-blue .stat-value {
+            color: var(--brand-blue);
+        }
+
+        /* Main Data Container */
+        .data-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            border: 1.5px solid var(--border);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1.5px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fafcff;
+        }
+
+        .card-header h2 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #334155;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            max-height: 600px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            position: sticky;
+            top: 0;
+            background: #fafcff;
+            text-align: left;
+            padding: 1rem 2rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 1.5px solid var(--border);
+            z-index: 10;
+        }
+
+        td {
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        .domain-cell {
+            color: var(--brand-blue);
+            font-weight: 700;
+        }
+
+        .time-cell {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .latency-cell {
+            font-weight: 800;
+        }
+
+        .hops-container {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #475569;
+            position: relative;
+            max-width: 400px;
+            overflow-x: auto;
+        }
+
+        .loading-overlay {
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="report-page">
+        <header>
+            <div class="branding">
+                <strong style="font-size:1.4rem;color:#2563eb;letter-spacing:.08em;">UPTRIX</strong>
+                <div>
+                    <h1>Persistence Report</h1>
+                    <span class="summary-sub" id="generationTime">Generated on ...</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a href="/" class="btn btn-outline">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="/api/report" class="btn btn-primary" onclick="exportReport(event)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                    </svg>
+                    Export Full CSV
+                </a>
+            </div>
+        </header>
+
+        <div class="filter-section" style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; background: var(--card-bg); padding: 1rem 1.5rem; border-radius: 12px; border: 1.5px solid var(--border);">
+             <span style="font-weight: 700; color: var(--text-main);">Filter by Date:</span>
+             <input type="date" id="reportDate" class="btn btn-outline" onchange="renderTable()" style="padding: 0.5rem; border-radius: 8px;">
+             <button class="btn btn-outline" onclick="document.getElementById('reportDate').value=''; renderTable();">Clear Filter</button>
+        </div>
+
+        <div class="data-card" style="margin-bottom: 2.5rem; padding: 1.5rem 2rem;">
+            <h2 style="font-size: 1.1rem; font-weight: 800; color: #334155; margin-bottom: 1.5rem;">Uptime Analytics Breakdown</h2>
+            <div style="position: relative; height: 260px; width: 100%; display: flex; justify-content: center;">
+                <canvas id="uptimeChart"></canvas>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Total Records</span>
+                <span class="stat-value" id="stat-total">0</span>
+            </div>
+            <div class="stat-card accent-blue">
+                <span class="stat-label">Tracked Domains</span>
+                <span class="stat-value" id="stat-domains">0</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Avg Global Latency</span>
+                <span class="stat-value" id="stat-latency">0ms</span>
+            </div>
+            <div class="stat-card accent-green">
+                <span class="stat-label">Max Network Hops</span>
+                <span class="stat-value" id="stat-hops">0 / 12</span>
+            </div>
+        </div>
+
+        <div class="data-card">
+            <div class="card-header">
+                <h2>Analytical Connectivity Logs</h2>
+                <div id="tableStatus" style="font-size: 0.8rem; font-weight: 700; color: var(--brand-blue);">Ready</div>
+            </div>
+            <div class="table-container">
+                <table id="reportTable">
+                    <thead>
+                        <tr>
+                            <th>Domain Service</th>
+                            <th>Recorded Time</th>
+                            <th>Status</th>
+                            <th>Latency</th>
+                            <th>Network Hop Path (Persistence)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reportBody">
+                        <!-- Rows rendered by JS -->
+                    </tbody>
+                </table>
+                <div id="loader" class="loading-overlay">Analyzing persistence data...</div>
+                <div id="noData" class="loading-overlay hidden">No performance data found in persistence. Check monitor
+                    status.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.allEntries = [];
+        let chartInstance = null;
+
+        async function fetchReport() {
+            try {
+                const token = localStorage.getItem('uptrixAccessToken') || '';
+                const role = localStorage.getItem('uptrixRole') || 'Guest';
+                const demo = !token || role === 'Guest';
+                const response = await fetch(demo ? '/api/demo/collection' : '/api/collection', {
+                    headers: token && !demo ? { 'Authorization': `Bearer ${token}` } : {}
+                });
+                if (!response.ok) throw new Error(`Report request failed (${response.status})`);
+                const data = await response.json();
+
+                const loader = document.getElementById('loader');
+                const noData = document.getElementById('noData');
+
+                document.getElementById('generationTime').innerText = `Snapshot generated at ${new Date().toLocaleTimeString()}`;
+
+                const domains = Object.keys(data);
+                let entries = [];
+
+                domains.forEach(domain => {
+                    data[domain].forEach(entry => {
+                        entries.push({ domain, ...entry });
+                    });
+                });
+
+                // Sort descending by time
+                entries.sort((a, b) => new Date(b.time) - new Date(a.time));
+                window.allEntries = entries;
+
+                loader.classList.add('hidden');
+
+                if (entries.length === 0) {
+                    noData.classList.remove('hidden');
+                    return;
+                }
+
+                renderTable();
+
+            } catch (error) {
+                console.error('Report Error:', error);
+                document.getElementById('loader').innerText = "Network Error: Could not fetch persistence logs.";
+            }
+        }
+
+        function renderTable() {
+            const tableBody = document.getElementById('reportBody');
+            const noData = document.getElementById('noData');
+            
+            const filterDate = document.getElementById('reportDate').value; // format YYYY-MM-DD
+            
+            // Update the Export Link to include the selected date
+            const exportBtn = document.querySelector('header .btn-primary');
+            if (exportBtn) {
+                exportBtn.innerText = filterDate ? `Export ${filterDate}` : 'Export Sample / Full Report';
+            }
+            
+            let filteredEntries = window.allEntries;
+            
+            if (filterDate) {
+                filteredEntries = window.allEntries.filter(entry => {
+                    return entry.time.startsWith(filterDate);
+                });
+            }
+
+            if (filteredEntries.length === 0 && window.allEntries.length > 0) {
+                tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:2rem;">No records found for selected date.</td></tr>';
+                updateStats(0, 0, 0, 0);
+                if (chartInstance) updateChart(0, 0);
+                return;
+            } else if (filteredEntries.length === 0) {
+                noData.classList.remove('hidden');
+                return;
+            }
+            
+            let totalLatency = 0;
+            let maxHopsCount = 0;
+            let upChecksCount = 0;
+            let downChecksCount = 0;
+            const uniqueDomains = new Set();
+            
+            tableBody.innerHTML = '';
+            filteredEntries.forEach(entry => {
+                uniqueDomains.add(entry.domain);
+                totalLatency += entry.latency || 0;
+
+                if (entry.hops) {
+                    const match = entry.hops.match(/^(\d+)/);
+                    if (match) {
+                        const hNum = parseInt(match[1]);
+                        if (hNum > maxHopsCount) maxHopsCount = hNum;
+                    }
+                }
+                
+                const tr = document.createElement('tr');
+
+                // Format hops to look cleaner
+                let hopsPretty = entry.hops || '---';
+                if (hopsPretty.includes('(')) {
+                    const parts = hopsPretty.split('(');
+                    const num = parts[0];
+                    const path = parts[1].replace(')', '').replace(/ > /g, ' â†’ ');
+                    hopsPretty = `<span style="font-weight:800; color:var(--text-main);">${num}</span><br><span style="font-size:0.75rem; color:var(--text-muted);">${path}</span>`;
+                }
+                
+                // Status Determination
+                const isUp = entry.latency && entry.latency > 0;
+                if(isUp) upChecksCount++; else downChecksCount++;
+
+                const statusBadge = isUp 
+                    ? '<span style="background: rgba(16, 185, 129, 0.15); color: #059669; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">UP</span>'
+                    : '<span style="background: rgba(239, 68, 68, 0.15); color: #dc2626; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">DOWN</span>';
+
+                tr.innerHTML = `
+                    <td><span class="domain-cell">${entry.domain}</span></td>
+                    <td><span class="time-cell">${entry.time}</span></td>
+                    <td>${statusBadge}</td>
+                    <td><span class="latency-cell">${entry.latency ? entry.latency + 'ms' : '--'}</span></td>
+                    <td><div class="hops-container">${hopsPretty}</div></td>
+                `;
+                tableBody.appendChild(tr);
+            });
+
+            document.getElementById('tableStatus').innerText = `Showing ${filteredEntries.length} persistence entries`;
+            updateStats(filteredEntries.length, uniqueDomains.size, Math.round(totalLatency / filteredEntries.length) || 0, maxHopsCount);
+            updateChart(upChecksCount, downChecksCount);
+        }
+
+        async function exportReport(event) {
+            event.preventDefault();
+            const token = localStorage.getItem('uptrixAccessToken') || '';
+            const role = localStorage.getItem('uptrixRole') || 'Guest';
+            const demo = !token || role === 'Guest';
+            const date = document.getElementById('reportDate').value;
+            const base = demo ? '/api/demo/report' : '/api/report';
+            const response = await fetch(date && !demo ? `${base}?date=${encodeURIComponent(date)}` : base, {
+                headers: token && !demo ? { 'Authorization': `Bearer ${token}` } : {}
+            });
+            if (!response.ok) { document.getElementById('tableStatus').textContent = 'Report access denied'; return; }
+            const blob = await response.blob();
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob); link.download = demo ? 'uptrix-demo-report.json' : 'uptrix-report.xlsx';
+            link.click(); URL.revokeObjectURL(link.href);
+        }
+        
+        function updateStats(total, domains, latency, maxHopsCount) {
+            document.getElementById('stat-total').innerText = total;
+            document.getElementById('stat-domains').innerText = domains;
+            document.getElementById('stat-latency').innerText = `${latency}ms`;
+            document.getElementById('stat-hops').innerText = `${maxHopsCount} / 12`;
+        }
+
+        function updateChart(upCount, downCount) {
+            const ctx = document.getElementById('uptimeChart');
+            if(!ctx) return;
+
+            if(chartInstance) {
+                chartInstance.destroy();
+            }
+
+            chartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['UP Checks', 'DOWN Checks'],
+                    datasets: [{
+                        data: [upCount, downCount],
+                        backgroundColor: ['#10b981', '#ef4444'],
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { position: 'right' }
+                    }
+                }
+            });
+        }
+
+        window.onload = fetchReport;
+    </script>
+</body>
+
+</html>

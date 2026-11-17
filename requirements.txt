@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+requests
+urllib3
+SQLAlchemy
+python-jose[cryptography]
+passlib
+slowapi
+cryptography
+openpyxl
+reportlab
